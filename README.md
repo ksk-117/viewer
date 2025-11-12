@@ -17,6 +17,11 @@
 
 ## 2. 初回セットアップ
 
+### GitHub からの入手方法
+
+- GitHub のリポジトリページ右上にある `Code` ボタンから `Download ZIP` を選ぶと、すべてのファイルを一括でダウンロードできます。
+- もしくは Releases タブで配布している最新版アーカイブ（必要に応じて作成してください）をダウンロードしてください。リリースには Windows/macOS 共通の ZIP アーカイブを添付しておくと便利です。
+
 1. **Python を準備**
    - Python が未インストールの場合は [https://www.python.org/](https://www.python.org/) から最新版を入手し、インストールします。
    - インストール時は「Add Python to PATH」にチェックを入れてください。
@@ -43,6 +48,10 @@
    ```powershell
    pip install -r requirements.txt
    ```
+
+### サンプル DICOM について
+- プライバシー保護のため、`img/` フォルダに含まれるサンプル DICOM はモザイク加工済みです。実際の症例を表示する際は、ご自身で用意したシリーズに置き換えてください。
+- 同一シリーズの `.dcm` ファイルを `img/` に一括コピーするだけでアプリが読み込めます。不要になったモザイク画像は削除して構いません。
 
 
 ## 3. アプリの起動
@@ -141,20 +150,57 @@ python app.py
 
 ---
 
-## 8. アプリを終了するには
+## 8. DICOM サンプルデータについて
 
-- ウィンドウ右上の「×」ボタン、または画面下部の「終了」ボタンを押してください。
-- 仮想環境を使用している場合は、PowerShell に戻り次のコマンドで無効化できます。
+リポジトリ内の `img/` フォルダに含まれる DICOM ファイルは、公開用に**モザイク処理／匿名化**されたサンプルです。実際の解析や発表に利用する場合は、以下の手順でご自身のデータに差し替えてください。
 
-  ```powershell
-  deactivate
-  ```
+1. `img/` フォルダ内のサンプルファイルをバックアップする、または削除します。
+2. 同一シリーズの DICOM (`.dcm`) ファイルを `img/` フォルダへコピーします。
+3. `python app.py` を再度実行し、読み込みと表示を確認します。
+
+> **注意**: 公開リポジトリに個人情報を含む DICOM をアップロードしないでください。必要に応じて匿名化ツールやモザイク処理を行ったうえで配布してください。
 
 ---
 
-## 9. 参考情報
+## 9. 配布とダウンロード
+
+- **GitHub Releases を活用**: リポジトリ上部の **Releases** タブから新規リリースを作成し、`viewer.zip` などのアーカイブを添付すると、利用者はリリースページの **Assets** からワンクリックでダウンロードできます。
+- **Download ZIP の案内**: リポジトリトップの緑色の **Code** ボタンから **Download ZIP** を選ぶだけでもソース一式を取得できます。README にこの操作を記載しておくと、初学者でも迷いません。
+- **サンプル画像の扱い**: `img/` にはモザイク済みのデータしか含まれないこと、利用者自身の DICOM に置き換えて使用できることを README に明記しておくと安心です。
+
+---
+
+## 10. 参考情報
 
 - 表示されているメタデータは DICOM ファイルに記録された情報です。記載がない項目は空欄となります。
 - 画像サイズやスライス厚は撮影プロトコルによって異なります。本アプリは読み込んだデータをそのまま再構成するため、撮影条件に依存します。
 
 以上で操作は完了です。ご不明点があれば、アプリのウィンドウを確認しながら本マニュアルに沿って手順を再確認してください。
+
+## 11. 開発履歴
+
+- 2025年10月9日：プロジェクト開始
+
+## 12. ライセンス
+
+MIT License
+
+Copyright (c) 2025 ksk
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
